@@ -1,0 +1,65 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Frame 01</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" />
+    <style type="text/css">
+    #ui-datepicker-div { font-size:11px; }
+    </style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    
+    <script>
+        $(function() {
+
+            $.datepicker.regional['pt-BR'] = {
+                closeText: 'Fechar',
+                prevText: '&#x3c;Anterior',
+                nextText: 'Pr&oacute;ximo&#x3e;',
+                currentText: 'Hoje',
+                monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+                'Jul','Ago','Set','Out','Nov','Dez'],
+                dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+                dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+                weekHeader: 'Sm',
+                dateFormat: 'dd/mm/yy',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: ''
+            };
+
+            $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+
+            $( "#data-inicio" ).datepicker({
+                minDate: "today",
+                dateFormat: "dd/mm/yy",
+                changeMonth: false,
+                numberOfMonths: 2,
+                onClose: function( selectedDate ) {
+                    $( "#data-fim" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+
+            $( "#data-fim" ).datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: false,
+                numberOfMonths: 2,
+                onClose: function( selectedDate ) {
+                    $( "#data-inicio" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+            
+        });
+    </script>
+</head>
+<body >
+<div id="emitir" style="width:600px; height:400px;">
+<input type="text" id="data-inicio">
+<input type="text" id="data-fim">
+</div>	
+</body>
+</html>
