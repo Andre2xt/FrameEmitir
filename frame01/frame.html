@@ -24,6 +24,9 @@
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
+        #formHotel .quartos, #formHotel #guia {
+            display: none;
+        }
     </style>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -129,7 +132,7 @@
             $( "#dt_saida" ).datepicker({
                 minDate: "today",
                 dateFormat: "dd/mm/yy",
-                changeMonth: true,
+                changeMonth: false,
                 numberOfMonths: 2,
                 onClose: function( selectedDate ) {
                     $( "#dt_entrada" ).datepicker( "option", "maxDate", selectedDate );
@@ -137,10 +140,20 @@
             });
 
             //Autocomplete 
-            $("#pass_de, #pass_para").autocomplete(
+            $("#pass_de, #pass_para, #amb_de, #amb_para").autocomplete(
                 {
                     source: [
                     "Alta Floresta / MT, Brasil, Deputado Benedito Santiago (AFL)","Altamira / PA, Brasil (ATM)","Amsterdam, Holanda, Schiphol (AMS)","Aracaju / SE, Brasil, Santa Maria (AJU)","Aracatuba / SP, Brasil, Dario Guarita (ARU)","Araguaina / TO, Brasil (AUX)","Araxa / MG, Brasil (AAX)","Aruba, Aruba, Queen Beatrix (AUA)","Assuncao, Paraguai, Silvio Pettirossi (ASU)","Atenas, Grecia, Eleftherios Venizelos (ATH)","Atlanta / GA, Estados Unidos, Hartsfield-Jackson Atlanta (ATL)","Auckland, Nova Zelandia (AKL)","Austin / TX, Estados Unidos, Austin-Bergstrom (AUS)","Baltimore / MD, Estados Unidos, Baltimore/Washington International Thurgood Marshall (BWI)","Bangkok, Tailandia, Todos os Aeroportos (BKK)","Bangkok, Tailandia, Don Muang (DMK)","Barcelona, Espanha, El Prat (BCN)","Barcelos / AM, Brasil (BAZ)","Bariloche, Argentina, Teniente Luis Candelaria (BRC)","Barreiras / BA, Brasil (BRA)","Bauru / SP, Brasil, Bauru-Arealva (JTC)","Beirute, Libano, Rafic Hariri (BEY)","Belem / PA, Brasil, Val de Cans (BEL)","Belo Horizonte  / MG, Brasil, Todos os aeroportos (BHZ)","Belo Horizonte  / MG, Brasil, Confins (CNF)","Belo Horizonte / MG, Brasil, Pampulha (PLU)","Berlim, Alemanha, Todos os aeroportos (BER)","Berlim, Alemanha, SchÃƒÂ¶nefeld (SXF)","Berlim, Alemanha, Tegel (TXL)","Bilbao, Espanha (BIO)","Birmingham / AL, Estados Unidos, Birmingham-Shuttlesworth (BHM)","Birmingham, Inglaterra (BHX)","Boa Vista / RR, Brasil, Atlas Brasil Cantanhede (BVB)","Bogota, Colombia, El Dorado (BOG)","Bologna, Italia, Guglielmo Marconi (BLQ)","Bombaim - Mumbai, india, Chatrapati Shivaji (BOM)","Bonito / MS, Brasil (BYO)","Boston / MA, Estados Unidos, Logan (BOS)","Brasilia / DF, Brasil, Presidente Juscelino Kubitschek (BSB)","Brisbane / QLD, Australia (BNE)","Bruxelas, Belgica, Zaventem (BRU)","Budapeste, Hungria, Ferihegy (BUD)","Buenos Aires, Argentina, Todos os aeroportos (BUE)","Buenos Aires, Argentina, Ezeiza International (EZE)","Nova Iorque / NY, Estados Unidos, Newark International (EWR)","Cabo Frio / RJ, Brasil (CFB)","Cacador / SC, Brasil, Carlos Alberto da Costa Neves (CFC)","Cairo, Egito (CAI)","Calgary / AB, Canada (YYC)","Campina Grande / PB, Brasil, Presidente Joao Suassuna (CPV)","Campo Grande  / MS, Brasil (CGR)","Cancun, Mexico (CUN)","Cape Town, africa do Sul (CPT)","Caracas, Venezuela, Siman Bolivar (CCS)","Carajas / PA, Brasil (CKS)","Cartagena, Colombia, Rafael Nunez (CTG)","Casablanca, Marrocos, Todos os Aeroportos (CAS)","Casablanca, Marrocos, Mohammed V International (CMN)","Cascavel / PR, Brasil (CAC)","Caxias do Sul / RS, Brasil, Hugo Cantergiani (CXJ)","Chapeco / SC, Brasil, Serafin Enoss Bertaso (XAP)","Charlotte / NC, Estados Unidos, Charlotte Douglas (CLT)","Chicago / IL, Estados Unidos, Todos os aeroportos (CHI)","Chicago / IL, Estados Unidos, Midway (MDW)","Chicago / IL, Estados Unidos, O'Hare International (ORD)","Cidade da Guatemala, Guatemala, La Aurora (GUA)","Cidade do Mexico, Mexico, Benito Juarez (MEX)","Cidade do Panama, Panama, Tocumen (PTY)","Cingapura, Cingapura, Changi (SIN)","Coari / AM, Brasil (CIZ)","Cochabamba, Bolivia, Jarge Wilstermann (CBB)","Colonia, Alemanha, Cologne/Bonn (CGN)","Copenhagen, Dinamarca, Kastrup (CPH)","Cordoba, Argentina, Pajas Blancas (COR)","Corumba / MS, Brasil (CMG)","Criciuma / SC, Brasil, Diomicio Freitas (CCM)","Cruzeiro do Sul / AC, Brasil (CZS)","Cuiaba / MT, Brasil, Marechal Rondon (CGB)","Curacao, Antilhas Holandesas, Hato (CUR)","Curitiba / PR, Brasil, Afonso Pena (CWB)","Cuzco, Peru, Alejandro Velasco Astete (CUZ)","Dallas / TX, Estados Unidos, Love Field (DAL)","Dallas / TX, Estados Unidos, Todos os aeroportos (DFW)","Delhi, india, Indira Gandhi (DEL)","Denpasar, Indonesia, Ngurah Rai (DPS)","Denver / CO, Estados Unidos (DEN)","Detroit  / MI, Estados Unidos, Detroit Metropolitan Wayne County (DTW)","Diamantina / MG, Brasil (DIA)","Dourados / MS, Brasil, Francisco de Matos Pereira (DOU)","Dubai, Emirados arabes Unidos (DXB)","Dublin, Irlanda (DUB)","Dusseldorf, Alemanha (DUS)","Edimburgo, Escocia (EDI)","Eirunepe / AM, Brasil (ERN)","El Calafate, Argentina, Comandante Armando Tola (FTE)","Estocolmo, Suecia, Todos os aeroportos (STO)","Estocolmo, Suecia, Bromma (BMA)","Estocolmo, Suecia, Arlanda (ARN)","Faro, Portugal (FAO)","Fernando de Noronha / PE, Brasil (FEN)","Filadelfia / PA, Estados Unidos (PHL)","Florenca, Italia, Peretola (FLR)","Florianopolis / SC, Brasil, Hercilio Luz (FLN)","Fonte Boa / AM, Brasil, Fonte Boa (FBO)","Fort Lauderdale / FL, Estados Unidos, Fort Lauderdale-Hollywood (FLL)","Fortaleza / CE, Brasil, Pinto Martins (FOR)","Foz do Iguacu / PR, Brasil, Aeroporto das Cataratas (IGU)","Frankfurt, Alemanha, Todos os Aeroportos (FRA)","Frankfurt, Alemanha, Hahn (HHN)","Funchal, Portugal (FNC)","Genebra, Suica, Cointrin (GVA)","Goiania / GO, Brasil, Santa Genoveva (GYN)","Governador Valadares / MG, Brasil (GVR)","Guangzhou - Canton, China, Guangzhou Baiyun (CAN)","Guayaquil, Equador, Simon Bolivar (GYE)","Hamburgo, Alemanha, Hamburg-Fuhlsbuttel (HAM)","Hannover, Alemanha, Hannover-Langenhagen (HAJ)","Havana, Cuba, Jose Marti (HAV)","Helsinque, Finlandia, Helsinki-Vantaa (HEL)","Hong Kong, China (HKG)","Honolulu / HI, Estados Unidos (HNL)","Houston / TX, Estados Unidos, George Bush Intercontinental (IAH)","Houston / TX, Estados Unidos, Todos os Aeroportos (HOU)","Humaita / AM, Brasil (HIA)","Ibiza, Espanha (IBZ)","Ilha de Comandatuba / BA, Brasil, Una (UNA)","Ilheus / BA, Brasil, Jorge Amado (IOS)","Imperatriz / MA, Brasil, Prefeito Renato Moreira (IMP)","Indianapolis / IN, Estados Unidos (IND)","Ipatinga / MG, Brasil, Usiminas (IPN)","Istambul, Turquia, Todos os Aeroportos (IST)","Istambul, Turquia, Sabiha GÃƒÂ¶kcen International (SAW)","Itaituba / PA, Brasil (ITB)","Ji-Parana / RO, Brasil, Jose Coleto (JPR)","Joacaba / SC, Brasil, Santa Terezinha (JCB)","Joao Pessoa / PB, Brasil, Presidente Castro Pinto (JPA)","Johanesburgo, africa do Sul, OR Tambo (JNB)","Joinville / SC, Brasil, Lauro Carneiro de Loyola (JOI)","Juazeiro do Norte / CE, Brasil, Orlando Bezerra de Meneses (JDO)","Juiz de Fora / MG, Brasil, Francisco Alvares de Assis (JDF)","Kingston, Jamaica, Norman Manley (KIN)","La Paz, Bolivia, El Alto (LPB)","Labrea / AM, Brasil (LBR)","Las Vegas / NV, Estados Unidos, McCarran (LAS)","Lencois / BA, Brasil, Aeroporto Chapada Diamantina (LEC)","Lima, Peru, Jorge Chavez (LIM)","Lisboa, Portugal, Portela (LIS)","Londres, Inglaterra, Todos os Aeroportos (LON)","Londres, Inglaterra, Gatwick (LGW)","Londres, Inglaterra, Heathrow (LHR)","Londres, Inglaterra, Stansted (STN)","Londres, Inglaterra, London City (LCY)","Londrina / PR, Brasil, Governador Jose Richa (LDB)","Los Angeles / CA, Estados Unidos (LAX)","Luanda, Angola, Quatro de Fevereiro (LAD)","Luxemburgo, Luxemburgo, Findel (LUX)","Lyon, Franca, Satolas (LYS)","Macapa / AP, Brasil (MCP)","Maceio / AL, Brasil, Zumbi dos Palmares (MCZ)","Madri, Espanha, Barajas (MAD)","Malaga, Espanha, Pablo Ruiz Picasso (AGP)","Manaus / AM, Brasil, Eduardo Gomes (MAO)","Manchester, Inglaterra (MAN)","Maputo, Mocambique (MPM)","Maraba / PA, Brasil (MAB)","Marilia / SP, Brasil, Frank Miloye Milenkovich (MII)","Maringa / PR, Brasil, Silvio Name Junior (MGF)","Marselha, Franca, Marseille-Marignane (MRS)","Medellin, Colombia, Jose Maria Cordova (MDE)","Melbourne / VIC, Australia, Todos os Aeroportos (MEL)","Melbourne - Avalon / VIC, Australia, Avalon (AVV)","Mendoza, Argentina, El Plumerillo (MDZ)","Miami / FL, Estados Unidos (MIA)","Milao, Italia, Todos os aeroportos (MIL)","Milao, Italia, Linate (LIN)","Milao, Italia, Malpensa (MXP)","Milao, Italia, Orio al Serio (BGY)","Minneapolis/St. Paul / MN, Estados Unidos (MSP)","Montes Claros / MG, Brasil, Mario Ribeiro (MOC)","Montevideu, Uruguai, Carrasco (MVD)","Montreal / QC, Canada, Montreal-Dorval (YUL)","Moscou, Russia, Todos os aeroportos (MOW)","Moscou, Russia, Bykovo (BKA)","Moscou, Russia, Domodedovo International (DME)","Moscou, Russia, Sheremetyevo International (SVO)","Moscou, Russia, Vnukovo International (VKO)","Munique, Alemanha, Franz Josef Strauss (MUC)","Nagoya, Japao, Todos os Aeroportos (NGO)","Nagoya, Japao, Komaki (NKM)","Napoles, Italia, Capodichino (NAP)","Natal / RN, Brasil, Augusto Severo (NAT)","Navegantes / SC, Brasil, Ministro Victor Konder (NVT)","Nice, Franca, Cote d 'Azur (NCE)","Nova Iorque / NY, Estados Unidos, Todos os aeroportos (NYC)","Nova Iorque / NY, Estados Unidos, John F. Kennedy International (JFK)","Nova Iorque / NY, Estados Unidos, LaGuardia (LGA)","Nova Orleans / LA, Estados Unidos, Louis Armstrong (MSY)","Buenos Aires, Argentina, Jorge Newbery (AEP)","Orlando / FL, Estados Unidos, Orlando International (MCO)","Orlando / FL, Estados Unidos, Todos os Aeroportos (ORL)","Osaka, Japao, Todos os aeroportos (OSA)","Osaka, Japao, Itami (ITM)","Osaka, Japao, Kansai International (KIX)","Oslo, Noruega, Todos os Aeroportos (OSL)","Oslo, Noruega, Sandefjord (TRF)","Ottawa / ON, Canada, Macdonald-Cartier (YOW)","Palmas / TO, Brasil, Brigadeiro Lysias Rodrigues (PMW)","Parintins / AM, Brasil, Julio Belem (PIN)","Paris, Franca, Todos os aeroportos (PAR)","Paris, Franca, Charles de Gaulle (CDG)","Paris, Franca, Orly (ORY)","Passo Fundo / RS, Brasil, Lauro Kurtz (PFB)","Patos de Minas / MG, Brasil, Pedro Pereira dos Santos (POJ)","Pelotas / RS, Brasil (PET)","Pequim, China (PEK)","Petrolina / PE, Brasil, Senador Nilo Coelho (PNZ)","Phoenix / AZ, Estados Unidos, Sky Harbor (PHX)","Portland / OR, Estados Unidos (PDX)","Portland / ME, Estados Unidos (PWM)","Porto, Portugal, Francisco Sa Carneiro (OPO)","Porto Alegre / RS, Brasil, Salgado Filho (POA)","Porto Seguro  / BA, Brasil (BPS)","Porto Trombetas / PA, Brasil (TMT)","Porto Velho / RO, Brasil, Belmonte (PVH)","Praga, Republica Tcheca, Ruzyne (PRG)","Presidente Prudente / SP, Brasil, Adhemar de Barros (PPB)","Punta Cana, Republica Dominicana (PUJ)","Punta del Este, Uruguai, Carlos A. Curbelo (PDP)","Quebec / QC, Canada, Jean Lesage (YQB)","Quito, Equador, Mariscal Sucre (UIO)","Recife / PE, Brasil, Guararapes (REC)","Reno / NV, Estados Unidos, Reno-Tahoe (RNO)","Ribeirao Preto / SP, Brasil, Leite Lopes (RAO)","Rio Branco / AC, Brasil, Placido de Castro (RBR)","Rio de Janeiro / RJ, Brasil, Todos os aeroportos (RIO)","Rio de Janeiro / RJ, Brasil, Galeao (GIG)","Rio de Janeiro / RJ, Brasil, Santos Dumont (SDU)","Rio Grande / RS, Brasil (RIG)","Rio Verde / GO, Brasil, General Leite de Castro (RVD)","Roma, Italia, Leonardo da Vinci-Fiumicino (FCO)","Rondonopolis / MT, Brasil, Maestro Marinho Franco (ROO)","Saint Louis / MO, Estados Unidos, Lambert-St. Louis (STL)","Salt Lake City / UT, Estados Unidos (SLC)","Salvador / BA, Brasil, Deputado Luis Eduardo Magalhaes (SSA)","San Andres, Colombia, Sesquicentenario (ADZ)","San Diego / CA, Estados Unidos (SAN)","San Francisco / CA, Estados Unidos (SFO)","San Jose / CA, Estados Unidos, Norman Y. Mineta San Jose (SJC)","San Jose, Costa Rica, Juan Santamaria (SJO)","San Juan, Porto Rico, Luis Munoz Marin (SJU)","San Salvador, El Salvador, Comalapa (SAL)","Santa Cruz de la Sierra, Bolivia, Todos os Aeroportos (SRZ)","Santa Cruz de la Sierra, Bolivia, Viru Viru International (VVI)","Santa Isabel do Rio Negro / AM, Brasil, Tapuruquara (TPU)","Santa Maria / RS, Brasil (RIA)","Santarem / PA, Brasil, Maestro Wilson Fonseca (STM)","Santiago, Chile, Comodoro Arturo Merino Benitez (SCL)","Santiago de Compostela, Espanha, Lavacolla (SCQ)","Santo angelo / RS, Brasil, Sepe Tiaraju (GEL)","Santo Domingo, Republica Dominicana, Las Americas (SDQ)","Sao Gabriel da Cachoeira / AM, Brasil (SJL)","Sao Joao del Rei / MG, Brasil, Prefeito Octavio de Almeida Neves (JDR)","Sao Jose do Rio Preto / SP, Brasil, Professor Eribelto Manoel Reino (SJP)","Sao Jose dos Campos / SP, Brasil, Professor Urbano Ernesto Stumpf (SJK)","Sao Luis / MA, Brasil, Marechal Cunha Machado (SLZ)","Sao Paulo / SP, Brasil, Todos os aeroportos (SAO)","Sao Paulo / SP, Brasil, Congonhas (CGH)","Sao Paulo - Campinas / SP, Brasil, Viracopos (VCP)","Sao Paulo - Guarulhos / SP, Brasil, Cumbica (GRU)","Sao Paulo de Olivenca / AM, Brasil, Senadora Eunice Micheles (SPO)","Seattle / WA, Estados Unidos, Seattle-Tacoma (SEA)","Seul, Coreia do Sul, Incheon International (ICN)","Seul, Coreia do Sul, Todos os aeroportos (SEL)","Seul, Coreia do Sul, Gimpo International (GMP)","Sevilha, Espanha, San Pablo (SVQ)","Sinop / MT, Brasil (OPS)","Stuttgart, Alemanha, Echterdingen (STR)","Sydney / NSW, Australia, Kingsford Smith (SYD)","Tabatinga / AM, Brasil (TBT)","Tampa / FL, Estados Unidos (TPA)","Tefe / AM, Brasil (TFF)","Tel Aviv, Israel, Ben Gurion (TLV)","Teresina / PI, Brasil, Senador Petronio Portella (THE)","Toquio, Japao, Todos os aeroportos (TYO)","Toquio, Japao, Haneda (HND)","Toquio, Japao, Narita International (NRT)","Toronto / ON, Canada, Todos os aeroportos (YTO)","Toronto / ON, Canada, Toronto City Centre (YTZ)","Toronto / ON, Canada, Toronto Pearson International (YYZ)","Toulouse, Franca, Toulouse-Blagnac (TLS)","Tucurui / PA, Brasil (TUR)","Turim, Italia (TRN)","Uberaba / MG, Brasil, Mario de Almeida Franco (UBA)","Uberlandia / MG, Brasil (UDI)","Uruguaiana / RS, Brasil, Rubem Berta (URG)","Ushuaia, Argentina, Ushuaia-Malvinas Argentinas (USH)","Valencia, Espanha (VLC)","Vancouver / BC, Canada (YVR)","Varsovia, Polonia, Okecie (WAW)","Veneza, Italia, Venice Marco Polo (VCE)","Verona, Italia, Verona-Villafranca (VRN)","Viena, Austria (VIE)","Vigo, Espanha, Vigo-Peinador (VGO)","Vilhena / RO, Brasil, Brigadeiro Camarao (BVH)","Vitoria / ES, Brasil, Eurico de Aguiar Salles (VIX)","Vitoria da Conquista / BA, Brasil (VDC)","Washington / DC, Estados Unidos, Dulles International (IAD)","Washington / DC, Estados Unidos, Todos os aeroportos (WAS)","Washington / DC, Estados Unidos, Ronald Reagan (DCA)","Xangai, China, Pudong International (PVG)","Xangai, China, Todos os Aeroportos (SHA)","Zurique, Suica (ZRH)","Caruaru / PE, Brasil (CAU)","Mossoro / RN, Brasil (MVF)","Varginha / MG, Brasil (VAG)" ],
+                    delay: 100,
+                    minLength: 3
+                }
+            );
+            
+            //Autocomplete 
+            $("#hote_cidade").autocomplete(
+                {
+                    source: [
+                    "Belo Horizonte - MG", "Sao Paulo - SP", "Belo Oriente - MG" ],
                     delay: 100,
                     minLength: 3
                 }
@@ -169,7 +182,7 @@
                         teste_alert = true;
                         msg += "Data de Ida\n";
                     }
-                    if( $("input[name=tipo]:checked").val() != '2' && $('#dt_volta').val() == '')
+                    if( $("#formViagem input[name=tipo]:checked").val() != '2' && $('#dt_volta').val() == '')
                     {
                         teste_alert = true;
                         msg += "Data de volta\n";
@@ -206,12 +219,12 @@
                     if( $('#dt_saida').val() == '')
                     {
                         teste_alert = true;
-                        msg += "Data de SaÃ­da\n";
+                        msg += "Data de Saída\n";
                     }
                     if( $('#quartos').val() == '-')
                     {
                         teste_alert = true;
-                        msg += "NÃºmero de Quartos\n";
+                        msg += "Número de Quartos\n";
                     }
                     if( $('#adultos:selected').val() == '-')
                     {
@@ -246,10 +259,10 @@
                         teste_alert = true;
                         msg += "Data de Ida\n";
                     }
-                    if( $('#dt_volta_2').val() == '')
+                    if( $("#formPacote input[name=tipo]:checked").val() != '2' && $('#dt_volta_2').val() == '')
                     {
                         teste_alert = true;
-                        msg += "Data de Volta\n";
+                        msg += "Data de volta\n";
                     }
                     if( $('#pass_adultos').val() == '-')
                     {
@@ -263,8 +276,6 @@
                 }
 
             );
-
-
 
             $("select#pass_criancas").change(function()
                 {
@@ -281,21 +292,20 @@
                 }
             );
 
-            $("#quartos").change(function ()
+            $("#formHotel #quartos").change(function ()
             {
                 var quartos = $(this).val();
-                $(".quartos, #guia").hide();
-                if(quartos != '')
+                $("#formHotel .quartos, #formHotel #guia").hide();
+                if(quartos != '-')
                 {
-                    $('#guia').show();
+                    $('#formHotel #guia').show();
 
                     for(var i = 1; i <= quartos; i++ )
-                        $("#quarto_" + i).show();
-
+                        $("#formHotel #quarto_" + i).show();
                 }
                 else
                 {
-                    $(".quartos, #guia").hide();
+                    $("#formHotel .quartos, #formHotel #guia").hide();
                 }
             });
 
@@ -304,7 +314,7 @@
             {
 
                 var criancas = $(this).val();
-                var pai = $(this).parents("div:eq(0)").attr("id");
+                var pai = $(this).parent().parents("div:eq(0)").attr("id");
 
                 $("#" + pai + " #idade_1, " + "#" + pai + " #idade_2, " + "#" + pai + " #idade_3").hide();
 
@@ -445,35 +455,475 @@
             </div>  
             
             <div class="actions">  
-
-                <input type="image" alt="Pesquisar" src="/skin/loja/default/images/btn_pesquisa.png">
-
+                <input type="submit" value="Pesquisar">  
             </div>
-
+            
+            <div style="clear:both"></div>
         </form>  
-        </p>      
+    
     </div>
     <!-- /PASSAGEM -->
 
     <!-- HOTEL -->
     <div id="tabs-hotel">
-        <p>aff
-        <form id="formHotel" action="#postado" method="post" target="_blank">  
-            <input type="hidden" name="form" value="passagem"> 
 
-            <div class="c_escolha_seu_voo">Escolha seu voo</div>
+        <form id="formHotel" action="http://www.meetmundi.com/index/compre-sua-viagem" method="post" target="_blank">  
+            
+            <input type="hidden" name="form" value="hotel">  
+ 
+            <div class="texto">Digite a cidade de seu hotel:</div>  
+            
+            <div class="c_hotel_cidade">
+
+                <input type="text" name="cidade" id="hote_cidade" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">  
+            </div>  
+
+            <div class="c_entrada"> 
+                <div class="c_texto">Entrada:</div> 
+                <div class="c_input">
+                    <input type="text" name="entrada" id="dt_entrada">
+                </div> 
+            </div>  
+
+            <div class="c_saida">  
+                <div class="c_texto">Saída:</div>
+                <div class="c_input">  
+                    <input type="text" name="saida" id="dt_saida">  
+                </div>
+            </div>  
+            
+            <div class="c_numero_quartos">  
+                <div class="c_texto">Número de quartos:</div>
+                <div class="c_select">  
+                    <select id="quartos" name="quartos" style="width: auto;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>   
+                </div>
+            </div>
+
+            <div id="guia" class="c_header">  
+                <div style="float:right; width: 150px;">Idade das crianças:</div>  
+                <div style="float:right; width: 70px;">Crianças:</div>  
+                <div style="float:right; width: 60px;">Adultos:</div>  
+            </div>
+
+            <!-- QUARTO 1 -->
+            <div id="quarto_1" class="quartos field">  
+            
+                <div class="c_texto">Quarto 1:</div>
+
+                <div class="c_select">
+                    <select id="adultos" name="quarto[1][adultos]" style="width: auto;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="criancas" name="quarto[1][criancas]" style="width: auto;">  
+                        <option>-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_1" name="quarto[1][idade_1]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_2" name="quarto[1][idade_2]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_3" name="quarto[1][idade_3]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+            </div>
+            <!-- /QUARTO 1 -->
+
+            <!-- QUARTO 2 -->
+            <div id="quarto_2" class="quartos field">  
+            
+                <div class="c_texto">Quarto 2:</div>
+
+                <div class="c_select">
+                    <select id="adultos" name="quarto[2][adultos]" style="width: auto;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="criancas" name="quarto[2][criancas]" style="width: auto;">  
+                        <option>-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_1" name="quarto[2][idade_1]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_2" name="quarto[2][idade_2]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_3" name="quarto[2][idade_3]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+            </div>
+            <!-- /QUARTO 2 -->
+
+            <!-- QUARTO 3 -->
+            <div id="quarto_3" class="quartos field">  
+            
+                <div class="c_texto">Quarto 3:</div>
+
+                <div class="c_select">
+                    <select id="adultos" name="quarto[3][adultos]" style="width: auto;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="criancas" name="quarto[3][criancas]" style="width: auto;">  
+                        <option>-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_1" name="quarto[3][idade_1]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_2" name="quarto[3][idade_2]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_3" name="quarto[3][idade_3]" style="width: auto; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+            </div>
+            <!-- /QUARTO 3 -->
+            
+            <div class="actions">  
+                <input type="submit" value="Pesquisar">  
+            </div>
+            
+            <div style="clear:both"></div>
+
         </form>
-        </p>
+       
     </div>
     <!-- /HOTEL -->
 
     <!-- PACOTE -->
     <div id="tabs-pacote">
-        <p>aff2
+        
         <form id="formPacote" action="#postado" method="post" target="_blank">  
+            
+            <input type="hidden" name="form" value="ambos"> 
 
+            <div class="c_escolha_seu_voo">Escolha seu voo</div>
+
+            <div class="c_ida_volta">
+                <span class="c_texto">Ida e Volta</span> 
+                <span class="c_radio"><input type="radio" name="tipo" value="1" checked=""></span>
+            </div>
+
+            <div class="c_somente_volta">
+                <span class="c_texto">Somente Ida</span>
+                <span class="c_radio"><input type="radio" name="tipo" value="2"></span>
+            </div>
+
+            <div class="c_de">  
+                <span class="c_texto">De:</span>  
+                <span class="c_input">
+                    <input type="text" name="de" id="amb_de" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                </span>  
+            </div>
+
+            <div class="c_para">  
+                <span class="c_texto">Para:</span>  
+                <span class="c_input">
+                    <input type="text" name="para" id="amb_para" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                </span>  
+            </div>
+
+            <div class="c_ida">
+                <span class="c_texto">Ida:</span>  
+                <span class="c_input">
+                    <input type="text" name="ida" id="dt_ida_2">
+                </span> 
+            </div>
+
+            <div class="c_volta">
+                <span class="c_texto">Volta:</span>  
+                <span class="c_input">
+                    <input type="text" name="volta" id="dt_volta_2">    
+                </span>
+            </div>
+
+
+            <div class="texto">Passageiros:</div>
+            
+            
+            <div class="c_texto_adultos">Adultos</div>
+            <div class="c_select">  
+                <select name="pass_adultos" id="adultos">
+                    <option>-</option>  
+                    <option value="1">1</option>  
+                    <option value="2">2</option>  
+                    <option value="3">3</option>  
+                    <option value="4">4</option>  
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+            </div>  
+            <div class="c_small">+ de 12 anos</div>  
+         
+
+        
+            <div class="c_texto">Crianças</div>
+            <div class="c_select"> 
+                <select name="pass_criancas_2" id="criancas">
+                    <option value="0">-</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="c_small">2 a 14 anos</div>
+            
+
+            <div class="c_select">
+                <select id="idade_1" name="quarto[3][idade_1]" style="width: auto; display: none;">  
+                    <option value="-">-</option>  
+                    <option value="1">1</option>  
+                    <option value="2">2</option>  
+                    <option value="3">3</option>  
+                    <option value="4">4</option>  
+                    <option value="5">5</option>  
+                    <option value="6">6</option>  
+                    <option value="7">7</option>  
+                    <option value="8">8</option>  
+                    <option value="9">9</option>  
+                    <option value="10">10</option>  
+                    <option value="11">11</option>  
+                    <option value="12">12</option>  
+                    <option value="13">13</option>  
+                    <option value="14">14</option>  
+                </select>  
+            </div>
+
+            <div class="c_select">
+                <select id="idade_2" name="quarto[3][idade_2]" style="width: auto; display: none;">  
+                    <option value="-">-</option>  
+                    <option value="1">1</option>  
+                    <option value="2">2</option>  
+                    <option value="3">3</option>  
+                    <option value="4">4</option>  
+                    <option value="5">5</option>  
+                    <option value="6">6</option>  
+                    <option value="7">7</option>  
+                    <option value="8">8</option>  
+                    <option value="9">9</option>  
+                    <option value="10">10</option>  
+                    <option value="11">11</option>  
+                    <option value="12">12</option>  
+                    <option value="13">13</option>  
+                    <option value="14">14</option>  
+                </select>  
+            </div>
+
+            <div class="c_select">
+                <select id="idade_3" name="quarto[3][idade_3]" style="width: auto; display: none;">  
+                    <option value="-">-</option>  
+                    <option value="1">1</option>  
+                    <option value="2">2</option>  
+                    <option value="3">3</option>  
+                    <option value="4">4</option>  
+                    <option value="5">5</option>  
+                    <option value="6">6</option>  
+                    <option value="7">7</option>  
+                    <option value="8">8</option>  
+                    <option value="9">9</option>  
+                    <option value="10">10</option>  
+                    <option value="11">11</option>  
+                    <option value="12">12</option>  
+                    <option value="13">13</option>  
+                    <option value="14">14</option>  
+                </select>  
+            </div>
+            
+            <div class="actions">  
+                <input type="submit" value="Pesquisar">  
+            </div>
+            
+            <div style="clear:both"></div>
+        </form>  
         </form>
-        </p>
+        
     </div>
     <!-- /PACOTE -->
 </div>
