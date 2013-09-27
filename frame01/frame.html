@@ -4,18 +4,76 @@
 	<title>Frame 01</title>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" />
     <style type="text/css">
-        body{font-size:10px;}
+        body{font-size:10px; background: #CCC;}
+        
         /*TAB STYLES*/
-        #emitir_frame_full{
-            width: 500px;
+        .emitir_frame{
+            width: 300px;
+            font-family: sans-serif;
+            font-size: 12px;
+        }
+        .c_texto,.c_header{
+            margin-top: 5px;
+        }
+        .emitir_frame input, .emitir_frame select {
+            padding-bottom: 3px;
+            padding-top: 3px;
         }
         .ui-tabs{
             padding:0;
         }
-        .ui-tabs-active a{
-
+        /*conteudo das abas*/
+        .ui-tabs .ui-tabs-panel{
+            background: white;
+            color:#707070;
+        }
+        .ui-tabs .ui-tabs-panel h5{
+            font-size: 12px;
+            padding: 0;
+            margin: 5px 0 0 0;
+        }
+        .ui-tabs .ui-tabs-nav{
+            padding:0;
         }
         .ui-widget-header{
+            border:5px solid #164765; /*Azul*/  
+        }
+        .ui-widget-content{
+            border: none;
+            background: none;
+        }
+        .ui-autocomplete.ui-widget-content{
+            background: white;
+            border:1px solid #CCC;
+        }
+        /*Aba Inativa*/
+        .emitir_frame .ui-state-default{
+            background: #777777;
+            font-weight: bold;
+            color:white;
+            border: none;
+        }
+        /*Aba Inativa hover*/
+        .emitir_frame .ui-state-hover{
+            border:none;
+            margin-bottom: -1px;
+            padding-bottom: 1px;
+        }
+        /*Texto aba inativa*/
+        .emitir_frame .ui-state-default a{
+            color:white;
+        }
+        /*Aba ativa*/
+        .emitir_frame .ui-tabs-active{
+            font-weight: bold;
+            border:none;
+            background: #164765; /*Azul*/          
+        }
+        /*Texto da aba ativa*/
+        .emitir_frame .ui-tabs-active a{
+            color:white;
+        }
+        .emitir_frame .ui-widget-header{
             background: none;
             border-left: none;
             border-top:none;
@@ -24,13 +82,26 @@
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
-        #formHotel .quartos, #formHotel #guia {
+        .emitir_frame #formHotel .quartos, #formHotel #guia {
             display: none;
+        }
+
+        /*Calendario*/
+        .ui-datepicker.ui-datepicker-multi {
+            width: auto;
+            background: #FFF;
+            padding: 10px;
+            border: 1px solid #CCC;
+        }
+        .ui-datepicker .ui-datepicker-header{
+            border:none;
+            padding:3px;
         }
     </style>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script>
+
         $(function() {
             //Inicialização tab
             $(".emitir_frame").tabs();
@@ -59,28 +130,6 @@
             //Aplicação da configuração de localidade ao datepicker
             $.datepicker.setDefaults($.datepicker.regional['pt-BR']);
 
-            //Aplicação do datepicker ao campo data-inicio
-            $( "#data-inicio" ).datepicker({
-                minDate: "today",
-                dateFormat: "dd/mm/yy",
-                changeMonth: false,
-                numberOfMonths: 2,
-                onClose: function( selectedDate ) {
-                    $( "#data-fim" ).datepicker( "option", "minDate", selectedDate );
-                }
-            });
-
-            //Aplicação do datepicker ao campo data-fim
-            $( "#data-fim" ).datepicker({
-                minDate: "today",
-                dateFormat: "dd/mm/yy",
-                changeMonth: false,
-                numberOfMonths: 2,
-                onClose: function( selectedDate ) {
-                    $( "#data-inicio" ).datepicker( "option", "maxDate", selectedDate );
-                }
-            });
-
             $( "#dt_ida" ).datepicker({
                 minDate: "today",
                 dateFormat: "dd/mm/yy",
@@ -90,6 +139,7 @@
                     $( "#dt_volta" ).datepicker( "option", "minDate", selectedDate );
                 }
             });
+
             $( "#dt_volta" ).datepicker({
                 minDate: "today",
                 dateFormat: "dd/mm/yy",
@@ -109,6 +159,7 @@
                     $( "#dt_volta_2" ).datepicker( "option", "minDate", selectedDate );
                 }
             });
+
             $( "#dt_volta_2" ).datepicker({
                 minDate: "today",
                 dateFormat: "dd/mm/yy",
@@ -119,7 +170,6 @@
                 }
             });
 
-
             $( "#dt_entrada" ).datepicker({
                 minDate: "today",
                 dateFormat: "dd/mm/yy",
@@ -129,6 +179,7 @@
                     $( "#dt_saida" ).datepicker( "option", "minDate", selectedDate );
                 }
             });
+
             $( "#dt_saida" ).datepicker({
                 minDate: "today",
                 dateFormat: "dd/mm/yy",
@@ -197,7 +248,6 @@
                     else
                         $("form#formViagem").submit();
                 }
-
             );
 
 
@@ -236,7 +286,6 @@
                     else
                         $("form#formHotel").submit();
                 }
-
             );
 
             $("#formPacote .actions input").click(function (e)
@@ -292,8 +341,7 @@
                 }
             );
 
-            $("#formHotel #quartos").change(function ()
-            {
+            $("#formHotel #quartos").change(function (){
                 var quartos = $(this).val();
                 $("#formHotel .quartos, #formHotel #guia").hide();
                 if(quartos != '-')
@@ -309,22 +357,40 @@
                 }
             });
 
-
-            $("select#criancas").change(function ()
-            {
+            //Função para gerar selects das idades das criancas no form passagem
+            $("select#criancas").change(function (){
 
                 var criancas = $(this).val();
                 var pai = $(this).parent().parents("div:eq(0)").attr("id");
 
                 $("#" + pai + " #idade_1, " + "#" + pai + " #idade_2, " + "#" + pai + " #idade_3").hide();
 
-                if(criancas != '')
+                if(criancas != '-')
                 {
                     for(var i = 1; i <= criancas; i++ )
                         $("#" + pai + " #idade_" + i).show();
 
                 }
+            });
 
+             //Função para gerar selects das idades das criancas no form pacote
+            $("select#criancas2").change(function (){
+
+                var criancas2 = $(this).val();
+                var pai = $(this).parent().parent().parents("div:eq(0)").attr("id");
+
+                $("#" + pai + " #idade_1, " + "#" + pai + " #idade_2, " + "#" + pai + " #idade_3").hide();
+
+                if(criancas2 != '0')
+                {
+                    for(var i = 1; i <= criancas2; i++ )
+                        $("#" + pai + " #idade_" + i).show();
+                        $("#label_idade_crianca2").show();
+                        console.log(criancas2);
+
+                }else{
+                    $("#label_idade_crianca2").hide();
+                }
             });
 
             $(".emitir_frame input[name=tipo]:radio").change(function(){
@@ -347,7 +413,6 @@
                 }
             });
 
-
         });
 
     </script>
@@ -368,53 +433,53 @@
             
             <input type="hidden" name="form" value="passagem"> 
 
-            <div class="c_escolha_seu_voo">Escolha seu voo</div>
+            <div class="c_escolha_seu_voo" style="width:100%;"><h5>Escolha seu voo</h5></div>
 
-            <div class="c_ida_volta">
-                <span class="c_texto">Ida e Volta</span> 
-                <span class="c_radio"><input type="radio" name="tipo" value="1" checked=""></span>
+            <div class="c_ida_volta" style="width:48%; float:left; margin-right:2%;">
+                <span class="c_texto" style="display:inline-block;">Ida e Volta</span> 
+                <span class="c_radio" style="display:inline-block;"><input type="radio" name="tipo" value="1" checked=""></span>
             </div>
 
-            <div class="c_somente_volta">
-                <span class="c_texto">Somente Ida</span>
-                <span class="c_radio"><input type="radio" name="tipo" value="2"></span>
+            <div class="c_somente_volta" style="width:48%; float:left; margin-left:2%;">
+                <span class="c_texto" style="display:inline-block;">Somente Ida</span>
+                <span class="c_radio" style="display:inline-block;"><input type="radio" name="tipo" value="2"></span>
             </div>
 
-            <div class="c_de">  
-                <span class="c_texto">De:</span>  
-                <span class="c_input">
-                    <input type="text" name="de" id="pass_de" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+            <div class="c_de" style="width:100%;float:left;">  
+                <span class="c_texto" style="width:100%; display:block;">De:</span>  
+                <span class="c_input" style="width:100%; display:block;">
+                    <input type="text" name="de" id="pass_de" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="width:100%;">
                 </span>  
             </div>
 
-            <div class="c_para">  
-                <span class="c_texto">Para:</span>  
-                <span class="c_input">
-                    <input type="text" name="para" id="pass_para" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+            <div class="c_para" style="width:100%;float:left;">  
+                <span class="c_texto" style="width:100%; display:block;">Para:</span>  
+                <span class="c_input" style="width:100%; display:block;">
+                    <input type="text" name="para" id="pass_para" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="width:100%;">
                 </span>  
             </div>
 
-            <div class="c_ida">
-                <span class="c_texto">Ida:</span>  
-                <span class="c_input">
-                    <input type="text" name="ida" id="dt_ida">
+            <div class="c_ida" style="width:48%; float:left; margin-right:2%;">
+                <span class="c_texto" style="width:100%; display:block;">Ida:</span>  
+                <span class="c_input" style="width:100%; display:block;">
+                    <input type="text" name="ida" id="dt_ida" style="width:100%;">
                 </span> 
             </div>
 
-            <div class="c_volta">
-                <span class="c_texto">Volta:</span>  
-                <span class="c_input">
-                    <input type="text" name="volta" id="dt_volta">    
+            <div class="c_volta" style="width:48%; float:left; margin-left:2%;">
+                <span class="c_texto" style="width:100%; display:block;">Volta:</span>  
+                <span class="c_input" style="width:100%; display:block;">
+                    <input type="text" name="volta" id="dt_volta" style="width:100%;">    
                 </span>
             </div>
 
 
-            <div class="texto">Passageiros:</div>
+            <div class="c_texto" style="width:100%;float:left;"><h5>Passageiros:</h5></div>
             
-            <div class="c_adultos" style="width: 90px; float: left; margin-left: 5px; font-size: 12px;" for="">
-                <div class="c_texto">Adultos</div>
-                <div class="c_select">  
-                    <select name="pass_adultos" id="adultos">
+            <div class="c_adultos" style="width:30%; float:left; margin-right:3%;">
+                <div class="c_texto" style="width:100%;">Adultos</div>
+                <div class="c_select" style="width:100%;">  
+                    <select name="pass_adultos" id="adultos" style="width:100%;">
                         <option>-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -425,36 +490,36 @@
                         <option value="7">7</option>
                     </select>
                 </div>  
-                <div class="c_small">+ de 12 anos</div>  
+                <div class="c_small" style="width:100%; font-size:9px;">+ de 12 anos</div>  
             </div>  
 
-            <div class="c_criancas" style="width: 90px; float: left; margin-left: 5px; font-size: 12px;" for="">
-                <div class="c_texto">Crianças</div>
-                <div class="c_select"> 
-                    <select name="pass_criancas" id="criancas">
+            <div class="c_criancas" style="width:30%; float:left; margin-right:3%;">
+                <div class="c_texto" style="width:100%;">Crianças</div>
+                <div class="c_select" style="width:100%;"> 
+                    <select name="pass_criancas" id="criancas" style="width:100%;">
                         <option value="0">-</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
                 </div>
-                <div class="c_small">2 a 11 anos</div>
+                <div class="c_small" style="width:100%; font-size:9px;">2 a 11 anos</div>
             </div>
 
-            <div class="c_bebes" style="width: 90px; float: left; margin-left: 5px; font-size: 12px;" for="">
-                <div class="c_texto">Bebês</div>
-                <div class="c_select"> 
-                    <select name="pass_bebes" id="bebes">
+            <div class="c_bebes" style="width:30%; float:left; margin-left:3%;">
+                <div class="c_texto" style="width:100%;">Bebês</div>
+                <div class="c_select" style="width:100%;"> 
+                    <select name="pass_bebes" id="bebes" style="width:100%;">
                         <option value="0">-</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select>
                 </div>
-                <div class="c_small"> - de 24 meses</div>
+                <div class="c_small" style="width:100%; font-size:9px;"> - de 24 meses</div>
             </div>  
             
-            <div class="actions">  
+            <div class="actions" style="width:100%;float:left;">  
                 <input type="submit" value="Pesquisar">  
             </div>
             
@@ -471,31 +536,31 @@
             
             <input type="hidden" name="form" value="hotel">  
  
-            <div class="texto">Digite a cidade de seu hotel:</div>  
+            <div class="c_texto"  style="width:100%;">Digite a cidade de seu hotel:</div>  
             
-            <div class="c_hotel_cidade">
+            <div class="c_hotel_cidade"  style="width:100%;">
 
-                <input type="text" name="cidade" id="hote_cidade" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">  
+                <input type="text" name="cidade" id="hote_cidade" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"  style="width:100%;">  
             </div>  
 
-            <div class="c_entrada"> 
-                <div class="c_texto">Entrada:</div> 
-                <div class="c_input">
-                    <input type="text" name="entrada" id="dt_entrada">
+            <div class="c_entrada"  style="width:48%;margin-right:2%;float:left;"> 
+                <div class="c_texto"  style="width:100%;">Entrada:</div> 
+                <div class="c_input" style="width:100%;">
+                    <input type="text" name="entrada" id="dt_entrada"  style="width:100%;">
                 </div> 
             </div>  
 
-            <div class="c_saida">  
-                <div class="c_texto">Saída:</div>
-                <div class="c_input">  
-                    <input type="text" name="saida" id="dt_saida">  
+            <div class="c_saida"  style="width:48%;margin-left:2%;float:left;">  
+                <div class="c_texto" style="width:100%;">Saída:</div>
+                <div class="c_input" style="width:100%;">  
+                    <input type="text" name="saida" id="dt_saida" style="width:100%;">  
                 </div>
             </div>  
             
-            <div class="c_numero_quartos">  
-                <div class="c_texto">Número de quartos:</div>
-                <div class="c_select">  
-                    <select id="quartos" name="quartos" style="width: auto;">  
+            <div class="c_numero_quartos" style="width:100%;float:left;">  
+                <div class="c_texto" style="width:100%;">Número de quartos:</div>
+                <div class="c_select"  style="width:100%;">  
+                    <select id="quartos" name="quartos">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -504,19 +569,22 @@
                 </div>
             </div>
 
-            <div id="guia" class="c_header">  
-                <div style="float:right; width: 150px;">Idade das crianças:</div>  
-                <div style="float:right; width: 70px;">Crianças:</div>  
-                <div style="float:right; width: 60px;">Adultos:</div>  
-            </div>
+            
 
             <!-- QUARTO 1 -->
             <div id="quarto_1" class="quartos field">  
             
-                <div class="c_texto">Quarto 1:</div>
+                <div class="c_texto" style="width:100%;float:left">Quarto 1:</div>
 
-                <div class="c_select">
-                    <select id="adultos" name="quarto[1][adultos]" style="width: auto;">  
+                <div id="guia" class="c_header"  style="width:100%; float:left;">
+                    <div style="float:left;width:26%;">Adultos:</div>
+                    <div style="float:left;width:26%;">Crianças:</div>
+                    <div style="float:left;width:48%;">Idade das crianças:</div>  
+                </div>
+
+
+                <div class="c_select" style="float:left;width:14%; margin-right:12%;">
+                    <select id="adultos" name="quarto[1][adultos]" style="width: 100%;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -524,8 +592,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="criancas" name="quarto[1][criancas]" style="width: auto;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:12%;">
+                    <select id="criancas" name="quarto[1][criancas]" style="width: 100%;">  
                         <option>-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -533,8 +601,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_1" name="quarto[1][idade_1]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_1" name="quarto[1][idade_1]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -553,8 +621,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_2" name="quarto[1][idade_2]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_2" name="quarto[1][idade_2]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -573,8 +641,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_3" name="quarto[1][idade_3]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_3" name="quarto[1][idade_3]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -598,10 +666,17 @@
             <!-- QUARTO 2 -->
             <div id="quarto_2" class="quartos field">  
             
-                <div class="c_texto">Quarto 2:</div>
+                <div class="c_texto" style="width:100%;float:left">Quarto 2:</div>
 
-                <div class="c_select">
-                    <select id="adultos" name="quarto[2][adultos]" style="width: auto;">  
+                <div id="guia" class="c_header"  style="width:100%; float:left;">
+                    <div style="float:left;width:26%;">Adultos:</div>
+                    <div style="float:left;width:26%;">Crianças:</div>
+                    <div style="float:left;width:48%;">Idade das crianças:</div>  
+                </div>
+
+
+                <div class="c_select" style="float:left;width:14%; margin-right:12%;">
+                    <select id="adultos" name="quarto[2][adultos]" style="width: 100%;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -609,8 +684,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="criancas" name="quarto[2][criancas]" style="width: auto;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:12%;">
+                    <select id="criancas" name="quarto[2][criancas]" style="width: 100%;">  
                         <option>-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -618,8 +693,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_1" name="quarto[2][idade_1]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_1" name="quarto[2][idade_1]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -638,8 +713,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_2" name="quarto[2][idade_2]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_2" name="quarto[2][idade_2]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -658,8 +733,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_3" name="quarto[2][idade_3]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_3" name="quarto[2][idade_3]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -683,10 +758,17 @@
             <!-- QUARTO 3 -->
             <div id="quarto_3" class="quartos field">  
             
-                <div class="c_texto">Quarto 3:</div>
+                <div class="c_texto" style="width:100%;float:left">Quarto 3:</div>
 
-                <div class="c_select">
-                    <select id="adultos" name="quarto[3][adultos]" style="width: auto;">  
+                <div id="guia" class="c_header"  style="width:100%; float:left;">
+                    <div style="float:left;width:26%;">Adultos:</div>
+                    <div style="float:left;width:26%;">Crianças:</div>
+                    <div style="float:left;width:48%;">Idade das crianças:</div>  
+                </div>
+
+
+                <div class="c_select" style="float:left;width:14%; margin-right:12%;">
+                    <select id="adultos" name="quarto[3][adultos]" style="width: 100%;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -694,8 +776,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="criancas" name="quarto[3][criancas]" style="width: auto;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:12%;">
+                    <select id="criancas" name="quarto[3][criancas]" style="width: 100%;">  
                         <option>-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -703,8 +785,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_1" name="quarto[3][idade_1]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_1" name="quarto[3][idade_1]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -723,8 +805,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_2" name="quarto[3][idade_2]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_2" name="quarto[3][idade_2]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -743,8 +825,8 @@
                     </select>  
                 </div>
 
-                <div class="c_select">
-                    <select id="idade_3" name="quarto[3][idade_3]" style="width: auto; display: none;">  
+                <div class="c_select" style="float:left;width:14%; margin-right:2%;">
+                    <select id="idade_3" name="quarto[3][idade_3]" style="width: 100%; display: none;">  
                         <option value="-">-</option>  
                         <option value="1">1</option>  
                         <option value="2">2</option>  
@@ -765,7 +847,7 @@
             </div>
             <!-- /QUARTO 3 -->
             
-            <div class="actions">  
+            <div class="actions" style="width:100%; float:left;">  
                 <input type="submit" value="Pesquisar">  
             </div>
             
@@ -783,140 +865,145 @@
             
             <input type="hidden" name="form" value="ambos"> 
 
-            <div class="c_escolha_seu_voo">Escolha seu voo</div>
+            <div class="c_escolha_seu_voo" style="width:100%;float:left;"><h5>Escolha seu voo</h5></div>
 
-            <div class="c_ida_volta">
-                <span class="c_texto">Ida e Volta</span> 
-                <span class="c_radio"><input type="radio" name="tipo" value="1" checked=""></span>
+            <div class="c_ida_volta" style="width:48%; float:left; margin-right:2%;">
+                <span class="c_texto" style="display:inline-block;">Ida e Volta</span> 
+                <span class="c_radio" style="display:inline-block;"><input type="radio" name="tipo" value="1" checked=""></span>
             </div>
 
-            <div class="c_somente_volta">
-                <span class="c_texto">Somente Ida</span>
-                <span class="c_radio"><input type="radio" name="tipo" value="2"></span>
+            <div class="c_somente_volta"style="width:48%; float:left; margin-left:2%;">
+                <span class="c_texto" style="display:inline-block;">Somente Ida</span>
+                <span class="c_radio" style="display:inline-block;"><input type="radio" name="tipo" value="2"></span>
             </div>
 
-            <div class="c_de">  
-                <span class="c_texto">De:</span>  
-                <span class="c_input">
-                    <input type="text" name="de" id="amb_de" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+            <div class="c_de" style="width:100%; float:left;">  
+                <span class="c_texto" style="display:block;width:100%;">De:</span>  
+                <span class="c_input" style="display:block;width:100%;">
+                    <input type="text" name="de" id="amb_de" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="width:100%">
                 </span>  
             </div>
 
-            <div class="c_para">  
-                <span class="c_texto">Para:</span>  
-                <span class="c_input">
-                    <input type="text" name="para" id="amb_para" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+            <div class="c_para" style="width:100%; float:left;">  
+                <span class="c_texto" style="display:block;width:100%;">Para:</span>  
+                <span class="c_input" style="display:block;width:100%;">
+                    <input type="text" name="para" id="amb_para" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="width:100%">
                 </span>  
             </div>
 
-            <div class="c_ida">
-                <span class="c_texto">Ida:</span>  
-                <span class="c_input">
-                    <input type="text" name="ida" id="dt_ida_2">
+            <div class="c_ida" style="width:48%; float:left; margin-right:2%;">
+                <span class="c_texto" style="display:block;width:100%;">Ida:</span>  
+                <span class="c_input" style="display:block;width:100%;">
+                    <input type="text" name="ida" id="dt_ida_2" style="width:100%;">
                 </span> 
             </div>
 
-            <div class="c_volta">
-                <span class="c_texto">Volta:</span>  
-                <span class="c_input">
-                    <input type="text" name="volta" id="dt_volta_2">    
+            <div class="c_volta" style="width:48%; float:left; margin-left:2%;">
+                <span class="c_texto" style="display:block;width:100%;">Volta:</span>  
+                <span class="c_input" style="display:block;width:100%;">
+                    <input type="text" name="volta" id="dt_volta_2" style="width:100%;">    
                 </span>
             </div>
 
 
-            <div class="texto">Passageiros:</div>
+            <div class="c_texto" style="width:100%;float:left;"><h5>Passageiros:</h5></div>
             
-            
-            <div class="c_texto_adultos">Adultos</div>
-            <div class="c_select">  
-                <select name="pass_adultos" id="adultos">
-                    <option>-</option>  
-                    <option value="1">1</option>  
-                    <option value="2">2</option>  
-                    <option value="3">3</option>  
-                    <option value="4">4</option>  
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                </select>
-            </div>  
-            <div class="c_small">+ de 12 anos</div>  
-         
-
-        
-            <div class="c_texto">Crianças</div>
-            <div class="c_select"> 
-                <select name="pass_criancas_2" id="criancas">
-                    <option value="0">-</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            </div>
-            <div class="c_small">2 a 14 anos</div>
-            
-
-            <div class="c_select">
-                <select id="idade_1" name="quarto[3][idade_1]" style="width: auto; display: none;">  
-                    <option value="-">-</option>  
-                    <option value="1">1</option>  
-                    <option value="2">2</option>  
-                    <option value="3">3</option>  
-                    <option value="4">4</option>  
-                    <option value="5">5</option>  
-                    <option value="6">6</option>  
-                    <option value="7">7</option>  
-                    <option value="8">8</option>  
-                    <option value="9">9</option>  
-                    <option value="10">10</option>  
-                    <option value="11">11</option>  
-                    <option value="12">12</option>  
-                    <option value="13">13</option>  
-                    <option value="14">14</option>  
-                </select>  
+            <div class="c_adultos" style="width:30%; margin-right:3%; float:left;">
+                <div class="c_texto">Adultos</div>
+                <div class="c_select">  
+                    <select name="pass_adultos" id="adultos" style="width:100%;">
+                        <option>-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+                </div>  
+                <div class="c_small" style="font-size:9px;">+ de 12 anos</div>  
             </div>
 
-            <div class="c_select">
-                <select id="idade_2" name="quarto[3][idade_2]" style="width: auto; display: none;">  
-                    <option value="-">-</option>  
-                    <option value="1">1</option>  
-                    <option value="2">2</option>  
-                    <option value="3">3</option>  
-                    <option value="4">4</option>  
-                    <option value="5">5</option>  
-                    <option value="6">6</option>  
-                    <option value="7">7</option>  
-                    <option value="8">8</option>  
-                    <option value="9">9</option>  
-                    <option value="10">10</option>  
-                    <option value="11">11</option>  
-                    <option value="12">12</option>  
-                    <option value="13">13</option>  
-                    <option value="14">14</option>  
-                </select>  
-            </div>
-
-            <div class="c_select">
-                <select id="idade_3" name="quarto[3][idade_3]" style="width: auto; display: none;">  
-                    <option value="-">-</option>  
-                    <option value="1">1</option>  
-                    <option value="2">2</option>  
-                    <option value="3">3</option>  
-                    <option value="4">4</option>  
-                    <option value="5">5</option>  
-                    <option value="6">6</option>  
-                    <option value="7">7</option>  
-                    <option value="8">8</option>  
-                    <option value="9">9</option>  
-                    <option value="10">10</option>  
-                    <option value="11">11</option>  
-                    <option value="12">12</option>  
-                    <option value="13">13</option>  
-                    <option value="14">14</option>  
-                </select>  
+            <div class="c_criancas" style="width:30%; margin-right:3%;float:left;">
+                <div class="c_texto">Crianças</div>
+                <div class="c_select"> 
+                    <select name="pass_criancas_2" id="criancas2" style="width:100%;">
+                        <option value="0">-</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="c_small" style="font-size:9px;">2 a 14 anos</div>
             </div>
             
-            <div class="actions">  
+            <div class="c_idades" style="width:30%; margin-left:4%;float:left;">
+
+                <div class="c_texto" id="label_idade_crianca2" style="width:100%; float:left; display:none;">Idades:</div>
+                <div class="c_select">
+                    <select id="idade_1" name="quarto[3][idade_1]" style="width: 100%; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_2" name="quarto[3][idade_2]" style="width: 100%; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+
+                <div class="c_select">
+                    <select id="idade_3" name="quarto[3][idade_3]" style="width: 100%; display: none;">  
+                        <option value="-">-</option>  
+                        <option value="1">1</option>  
+                        <option value="2">2</option>  
+                        <option value="3">3</option>  
+                        <option value="4">4</option>  
+                        <option value="5">5</option>  
+                        <option value="6">6</option>  
+                        <option value="7">7</option>  
+                        <option value="8">8</option>  
+                        <option value="9">9</option>  
+                        <option value="10">10</option>  
+                        <option value="11">11</option>  
+                        <option value="12">12</option>  
+                        <option value="13">13</option>  
+                        <option value="14">14</option>  
+                    </select>  
+                </div>
+            
+            </div>
+
+            <div class="actions" style="width:100%;float:left;">  
                 <input type="submit" value="Pesquisar">  
             </div>
             
